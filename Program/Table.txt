@@ -1,0 +1,100 @@
+
+create table
+CREATE TABLE info (Id INT NOT NULL AUTO_INCREMENT, Country VARCHAR(50) NOT NULL, Capital VARCHAR(80) NOT NULL,PRIMARY KEY (Id));
+
+insert record in table
+insert into info(Country,Capital) values ('India','New Delhi'),('Bangladesh','Dhaka'),('Canada','Ottawa'),('France','Paris'),('Germany','Berlin'),('Israel','Jerusalem'), ('Italy','Rome'),('Japan','Tokyo'),('Maldives','Male'),('Nepal','Kathmndu'),('China','Beijing');
+
+select * from table;
+
+update record
+UPDATE info SET Capital='Kathmandu' WHERE Country = 'Nepal';
+
+Delete Record
+DELETE FROM info WHERE Country = 'China';
+
+============================================================================
+
+==> MySQL INSERT ON DUPLICATE KEY
+
+INSERT INTO Student(Stud_ID, Name, Email, City)   
+VALUES (1,'Stephen', 'stephen@texas.com', 'Texax'),   
+(2, 'Joseph', 'Joseph@alaska.com', 'Alaska'),   
+(3, 'Peter', 'Peter@cali.com', 'california'),
+(4,'John', 'john@newyork.com', 'New York');
+
+INSERT INTO Student(Stud_ID, Name, Email, City)   
+VALUES (4, 'John', 'john@newyork.com', 'New York')  
+ON DUPLICATE KEY UPDATE City = 'California';
+
+===============================================================================
+
+==> MySQL Insert Ignore
+
+INSERT IGNORE INTO Student(Stud_ID, Name, Email, City)   
+VALUES (5,'Donald', 'donald@javatpoint.com', 'New York'),   
+(6, 'Joseph', 'Joseph@alaska.com', 'Alaska');  
+
+===============================================================================
+
+CREATE TABLE tbl_test (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL, city VARCHAR(50), PRIMARY KEY(id));
+
+DESC tbl_test;
+
+SHOW TABLES;
+
+-> Add column in Table
+ALTER TABLE tbl_test ADD age INT(50) NOT NULL AFTER name;
+
+-> Rename column in table
+ALTER TABLE tbl_test CHANGE COLUMN age salary INT(25) NOT NULL;
+
+-> Rename Table
+ALTER TABLE tbl_test RENAME TO table_test;
+
+-> Drop Column in Table
+ALTER TABLE table_test DROP COLUMN city;
+
+* Show Databases
+SHOW DATABASES;
+
+* Show Tables
+syntax: USE database_name;
+
+USE employee;
+-> SHOW FULL TABLES;
+
+Syntax: SHOW TABLES IN database_name;
+					or
+		SHOW TABLES FROM database_name;
+
+-> SHOW TABLES FROM emp_db;
+-> SHOW TABLES IN  testing;
+
+* SHOW Tables Using Pattern Matching
+
+syntax-> SHOW TABLES LIKE <pattern>;
+					or
+		 SHOW TABLES WHERE <expression>;
+		 
+-> SHOW TABLES FROM employee LIKE 'tbl%';	
+-> SHOW TABLES IN employee WHERE Tables_in_employee = 'emp_des';
+
+===========================================================================
+
+* MySQL TRUNCATE Table	
+-> First insert Data into Table 
+-> INSERT INTO employee(emp_id,name,city) VALUES (1 ,'Chandra', 'Hydrabad'),(2, 'Surya', 'Jaipur'), (3,'ShriRam', 'Ayodhya'),(4,'Sun', 'Modhera'),(5,'Rajni', 'Chennai');
+-> TRUNCATE TABLE employee;
+
+* Drop Table 
+-> DROP TABLE employee;
+
+* TEMPORARY TABLE
+-> CREATE TEMPORARY TABLE students (rollno int(50) NOT NULL,name VARCHAR(40) NOT NULL, total_marks INT(50) NOT NULL, PRIMARY KEY(rollno)); 
+-> INSERT INTO students(rollno, name, total_marks) VALUES (1, 'Yudhishdhir', 100),(2, 'Arjun', 95),(3, 'Bhim', 94),(4, 'Nakul', 93),(5, 'Sahdev', 91);
+
+
+
+
+

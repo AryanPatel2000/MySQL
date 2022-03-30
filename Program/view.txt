@@ -1,0 +1,36 @@
+
+==>Table-1
+
+-> create table tbl_state(id int NOT NULL, name VARCHAR(50) NOT NULL, capital VARCHAR(50) NOT NULL, PRIMARY KEY(id) );
+-> insert into tbl_state(id,name,capital) values (1,'Gujarat', 'Gandhinagar'),(2,'Maharashtra', 'Mumbai'),(3,'Uttrakhnd', 'Dehradun'),(4,'UP', 'Lucknow'),(5,'Goa', 'Panji');
+
+==>Table-2
+-> create table tbl_cm(id int NOT NULL, cm varchar(50) NOT NULL, primary key(id));
+-> insert into tbl_cm(id,cm) values (1,'Bhupendra Patel'),(2,'Uddhav Thackeray'),(3,'Pushkar Singh Dhami'),(4,'Yogi Aditya Nath'),(5,'Pramod Sawant');
+
+
+View Syntax => CREATE[OR REPLACE] VIEW view_name AS SELECT columns FROM tables [WHERE CONDITION]; 
+
+create view capital as select name,capital from tbl_state;
+
+-> We can see the created view by using the following syntax:
+
+SELECT * FROM view_name;    
+
+- SELECT * FROM capital;
+
+-> MySQL Update View
+Syntax: ALTER VIEW view_name AS SELECT columns FROM table WHERE condition;
+ 
+- alter view capital as select sr_no,name,capital from tbl_state;
+
+-> MySQL Drop View
+Syntax: DROP view[if exists] view_name;
+
+- drop view capital;
+
+-> MySQL Create View with JOIN Clause
+
+- create view all_info as select s.name,s.capital,c.cm from tbl_state s,tbl_cm c where s.id = c.id;
+
+

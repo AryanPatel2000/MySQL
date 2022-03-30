@@ -1,0 +1,23 @@
+
+==> CREATE TABLE info_memorials (Id INT NOT NULL AUTO_INCREMENT, Leader VARCHAR(50) NOT NULL, Memorial VARCHAR(80) NOT NULL,PRIMARY KEY (Id));  
+==> insert into info_memorials (Id,Leader,Memorial) values (1,'Mahatma Gandhi','Raj Ghat'),(2,'Jawaharlal Nehru','Shanti Van'),(3,'Lal Bahadur Shastri','Vijay Ghat'),(4,'Indira Gandhi','Shakti Sthal'),(5,'Charan Singh','Kisan Ghat'),(6,'Rajiv Gandhi','Veer Bhumi'),(7,'B.R. Ambedkar','Chaitya Bhoomi'),(8,'Atal Bihari Vajpayee','Sadaiv Atal');
+
+-> MySQL Table Locking
+	
+	* Read Locks
+- SELECT CONNECTION_ID();
+- select * from info_memorials;
+- LOCK TABLE info_memorials READ;
+
+- Now try to insert new data
+- insert into info_memorials(Id,Leader,Memorial) values(9,'Morarjee Desai','Abhay Ghat');
+
+	* Write Locks
+- lock table info_memorials write;
+
+- Now try to insert new data
+- insert into info_memorials(Id,Leader,Memorial) values(10,'P.V. Narsimha Rao','P.V. Gyan Bhoomi');
+
+
+CREATE TABLE info (Id INT NOT NULL AUTO_INCREMENT, Country VARCHAR(50) NOT NULL, Capital VARCHAR(80) NOT NULL,PRIMARY KEY (Id));
+
