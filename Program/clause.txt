@@ -1,0 +1,102 @@
+==> CREATE TABLE tbl_cricketers (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL, city VARCHAR(80) NOT NULL,PRIMARY KEY (id));
+  
+==> insert into tbl_cricketers (name,city) values ('MSD','Chennai'),('Virat Kohli','Banglore'),
+	('Rohit Sharma','Mumbai'),('Hardik Pandya','Gujarat'),('Sanju Samsun','Rajsthan'),
+	('KL Rahul','Lucknow'),('Mayank Agrawal','Punjab'),('Rishabh Panth','Delhi'),
+	('Shreyas','Kolkata'),('Shami','Gujarat'),('Jadeja','Chennai'),('DK','Banglore'),('Chahal','Rajsthan'),
+	('Krunal Pandya','Lucknow'),('Bumrah','Mumbai'),('Akshar Patel','Delhi'),('Faf','Banglore'),
+	('Ruturaj','Chennai'),('Rashid Khan','Gujarat'),('Nitish Rana','Kolkata'),('Ishan Kishan','Mumbai'),
+	('Rahul Tewtiya','Gujarat'),('Harshal Patel','Banglore'),('Hooda','Lucknow');
+	
+_____________________________________________________________________________________________________
+
+1> WHERE clause
+
+	Syntax: WHERE condition;
+
+	select * from tbl_cricketers where city = 'Chennai';
+
+	select * from tbl_cricketers where city = 'Chennai' AND  id > 5;
+
+	select * from tbl_cricketers where city = 'Gujarat' OR city = 'Chennai';
+
+	select * from tbl_cricketers where(city = 'Banglore' AND name='Virat Kohli') OR ( id < 5);
+
+2> DISTINCT Clause 
+
+	Syntax: SELECT DISTINCT expressions FROM tables [WHERE conditions];  
+
+	select distinct city from tbl_cricketers;
+
+	select distinct name,city from tbl_cricketers;
+
+3> MySQL FROM Clause
+
+	select * from tbl_cricketers where id <= 5;
+
+	select student.Stud_Id, tbl_cricketers.name 
+	from tbl_cricketers
+	INNER JOIN student
+	on tbl_cricketers.id = student.Stud_Id ;
+
+	select tbl_cricketers.id, student.Name
+	FROM tbl_cricketers
+	LEFT OUTER JOIN student
+	on tbl_cricketers.id = student.Stud_Id ;
+
+4> MySQL ORDER BY Clause
+
+	Syntax: SELECT expressions  
+			FROM tables  
+			[WHERE conditions]  
+			ORDER BY expression [ ASC | DESC ]; 
+	
+	select * from tbl_cricketers where city = 'Gujarat' order by name;
+	
+	select * from tbl_cricketers where city = 'Gujarat' order by name asc;
+	
+	select * from tbl_cricketers where city = 'Gujarat' order by name desc;
+	
+	select name,city from tbl_cricketers where id > 5 order by name desc, city asc;
+	
+5> MySQL Group BY Clause
+
+	Syntax: SELECT expression1, expression2, ... expression_n,   
+			aggregate_function (expression)  
+			FROM tables  
+			[WHERE conditions]  
+			GROUP BY expression1, expression2, ... expression_n;  
+			
+	* with SUM function
+		select city,count(*) from tbl_cricketers group by city;
+
+-> create table emp(id int NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL, working_hour int(50) NOT NULL, PRIMARY KEY(id) );
+
+-> insert into emp(name,working_hour) values ('A',10),('B',8),('C',7),('D',9),('A',7),('D',5),('C',8),('B',9),('A',10),('A',5); 		
+	
+	* with SUM function
+		select name, SUM(working_hour) as 'total_working_hours' from emp group by name;
+
+	* with MIN function
+		select name, MIN(working_hour) as 'Minimum Working Hours' from emp group by name;
+	
+	* with MAX function
+		select name,MAX(working_hour) as 'Maximum Working Hours' from emp group by name;
+		
+	* with AVG function
+		select name, AVG(working_hour) as 'Average working hour' from emp group by name;
+		
+6> MySQL HAVING Clause
+
+	Syntax: SELECT expressiona1, expression2,...expression_n,
+			aggregate_function (expression)
+			FROM tables
+			[WHERE conditions]
+			GROUP BY expression1, expression2,...expression_n
+			HAVING condition;
+			
+			select name, SUM(working_hour) as 'Total Working Hours' from emp group by name having sum(working_hour) > 15;
+
+
+	
+
