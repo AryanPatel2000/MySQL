@@ -1,0 +1,142 @@
+==> Control Flow Function
+
+1> IF()function
+
+-> Syntax: IF(expression 1, expression 2, expression 3)
+
+select if(500 > 1000, 'True', 'False');
+select if(500 < 1000, 'True', 'False');
+select if(500 = 500, 'Crrect', 'Wrong');
+select if(STRCMP('M.S.Dhoni','Virat Kohli')= 0, 'Correct','Wrong');
+select Id,Name,Product, if(Country = India, 'Made in India', 'Made by Other Country') As Origin from original_table ;
+
+2> IFNULL()
+
+-> Sytax: IFNULL(expression 1, expression 2);
+
+select ifnull(0,5);
+select ifnull('India',5);
+select ifnull(null, 'Hello');
+
+3> NULLIF()
+
+-> Syntax: NULLIF(expression 1, expression 2);
+
+select nullif('India','India');
+select nullif(25,50);
+select nullif('India', 500);
+select emp_id,name,city, nullif(city, 'bhavnagar') as result from employee;
+
+4> CASE Expression
+
+	1.Simple CASE statement
+	
+	Syntax: CASE value
+				WHEN[compare_value] THEN result
+				[WHEN[compare_value] THEN result...]
+				[ELSE result]
+			END;
+			
+	select case 1 when 1 then 'one' when 2 then 'two' else 'more' end;			
+	select case 'surat' when 'surat' then 'Welcome to Surat' when 'bhavnagar' then 'Welcome to bhavnagar' else 'See you Next time' end;
+	select case 'Mumbai' when 'surat' then 'Welcome to Surat' when 'bhavnagar' then 'Welcome to bhavnagar' else 'See you Next time' end;
+	
+	
+	2.Searched CASE statement
+	
+	Syntax: CASE	
+				WHEN [condition] THEN result
+				[ WHEN [condition] THEN result...]
+				[ELSE result]
+			END;
+			
+	select case Binary 'A' when 'a' then 1 when 'b' then 2 end; 
+	select id,name,size, case size when 'small' then 'S' when 'medium' then 'M' when 'large' then 'L' when 'x-large' then 'XL' else 'Different size' end as Size from, shirts;
+	
+5> IF statement
+
+	1> IF-THEN statement
+	
+	syntax: IF condition THEN 
+					statements;
+			END IF;
+			
+=> 	DELIMITER $$
+		CREATE PROCEDURE myRes(original_rate NUMERIC(6,2), OUT discount_rate NUMERIC(6,2))
+			NO SQL
+			
+			BEGIN
+				if(original_rate > 200 )THEN
+					SET discount_rate = original_rate * 0.5;
+				END IF;
+					select discount_rate;
+			END $$
+	DELIMITER ;
+	
+	SET @P = 600;
+	SET @dp = 500;
+	
+	CALL myRes(@p, @dp);
+	
+	
+	2> IF-THEN-ELSE Statement
+	
+	syntax: IF condition THEN
+				statements;
+			ELSE
+				else-statement
+			END IF;
+			
+=> 	DELIMITER $$ 
+		CREATE procedure myDisc(original_rate int, out discount_rate int)
+				NO SQL
+			BEGIN
+				if(original_rate > 200) THEN
+					set discount_rate = original_rate * 0.5;
+				else
+					set discount_rate = original_rate;
+				end if;
+					select discount_rate;
+			END$$
+	DELIMITER ;
+	
+	set @or = 150;
+	set @dr = 200;
+	
+	call myDisc(@or, @dr);
+	
+	
+	3> IF-THEN-ELSEIF-ELSE Statement
+	
+	syntax: IF condition THEN
+				statement;
+			ELSEIF elseif condition THEN
+				elseif statement;
+				
+			...
+			
+			ELSE
+				else statement;
+			
+			END IF;
+			
+=> 	DELIMITER $$
+		CREATE procedure myDiscount(original_rate int, out discount_rate int)
+			
+		BEGIN
+			if( original_rate > 500 ) THEN
+				SET discount_rate = original_rate * 0.5;
+			elseif (original_rate <=500 && original_rate >250) THEN
+				SET discount_rate = original_rate * 0.8;
+			else
+				set discount_rate = original_rate;
+			END If;
+				SELECT discount_rate;
+		END$$
+	DELIMITER ;
+	
+	set @orate = 400;
+	set @drate = 100;
+	
+	call myDiscount(@orate, @drate);
+	

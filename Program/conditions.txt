@@ -1,0 +1,70 @@
+==> MySQL Condition
+
+1> MySQL AND condition
+	
+	Syntax: WHERE condition1  
+			AND condition2  
+			...  
+			AND condition_n;  
+			
+	select * from tbl_empl where name = 'kapil' AND id > 4;		
+	
+2> MySQL OR condition
+
+	Syntax: WHERE condition1  
+			OR condition2  
+			...  
+			OR condition_n; 
+			
+	select * from tbl_empl where name = 'kapil' OR id > 5;
+	
+3> MySQL AND & OR condition
+
+	Syntax: WHERE condition1
+			AND condition2
+			...
+			OR condition_n;
+	
+	select * from tbl_empl where (city = 'surat' AND name = 'mahan') OR (id < 5);
+	
+4> MySQL Boolean
+
+	select TRUE, FALSE, true, false, True, False;
+	
+5> MySQL LIKE condition
+
+	Syntax: expression LIKE pattern [ESCAPE 'escape_character'];
+	
+	select emp_id,name,city from employee where city LIKE 'bhav%';
+	select emp_id,name,city from employee where city LIKE 'sur_t' ;
+	select emp_id,name from employee where city NOT LIKE 'bhav%';
+	
+6> MySQL IN condition
+
+	Syntax: expression IN (value1,value2,...value_n);
+	
+	select * from employee where name IN ('a','b','c','d','e');
+	
+7> MySQL ANY
+	
+	Syntax: operand comparison_operator ANY (subquery);
+					or
+	SELECT column_lists FROM table_name1 WHERE column_name Operator ANY (SELECT column_name FROM table_name2 WHERE condition);
+	
+	CREATE TABLE table1 (num_value INT );   	
+	INSERT INTO table1 (num_value)  VALUES(10), (20), (25);
+	
+	CREATE TABLE table2 (num_value INT );   	
+	INSERT INTO table2 (num_value)  VALUES(20), (7), (10);
+	
+	SELECT num_value FROM table1 where num_value > ANY (select num_value from table2);
+	select num_value from table1 where num_value <> ANY (select num_value from table2);
+	
+8> MySQL Exists
+
+	Syntax: SELECT col_names FROM tables_name WHERE [NOT]EXISTS(SELECT col_names FROM tables_name WHERE condition);
+	
+	select name,capital from tbl_state where EXISTS (select * from tbl_cm where tbl_state.id = tbl_cm.id); 
+	select name,capital from tbl_state where NOT EXISTS (select * from tbl_cm where tbl_state.id = tbl_cm.id);
+	
+	
