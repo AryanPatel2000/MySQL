@@ -1,0 +1,86 @@
+=> MySQL JOIN
+
+1> MySQL Inner Join
+
+	Syntax: SELECT columns FROM table_1 INNER JOIN table_2 ON table_1.column = table_2.column ;
+	
+	select tbl_state.id, tbl_state.name, tbl_state.capital, tbl_cm.cm from tbl_state inner join tbl_cm on tbl_state.id = tbl_cm.id ;
+	select tbl_state.id, tbl_state.name, tbl_state.capital, tbl_cm.cm from tbl_state inner join tbl_cm on tbl_state.id = tbl_cm.id group by cm;
+	select tbl_state.id, tbl_state.name, tbl_state.capital, tbl_cm.cm from tbl_state inner join tbl_cm USING (id);
+	select tbl_cm.id, tbl_cm.cm, tbl_state.name, tbl_state.capital from tbl_cm inner join tbl_state on tbl_cm.id = tbl_state.id where capital = 'Gandhinagar';
+	
+2> MySQL Left Join
+
+	Syntax: SELECT columns FROM table_1 LEFT [OUTER] JOIN table_2 ON table_1.column = table_2.column ;
+	
+	select tbl_state.name, tbl_state.capital, tbl_cm.cm from tbl_state LEFT JOIN tbl_cm ON tbl_state.id = tbl_cm.id ;
+	select name, capital, cm from tbl_state left join tbl_cm USING(id);
+	select tbl_state.id, name,capital, cm from tbl_state left join tbl_cm on tbl_state.id = tbl_cm.id group by capital;
+	select tbl_cm.id,cm, name,capital from tbl_cm left join tbl_state on tbl_cm.id = tbl_state.id where tbl_cm.cm = 'Pramod Sawant';
+	select tbl_state.id, name, capital, cm from tbl_state left join tbl_cm on tbl_state.id = tbl_cm.id where cm is NULL ;
+	
+3> MySQL Right Join
+
+	Syntax: SELECT columns FROM table_1 RIGHT [OUTER] JOIN table_2 ON table_1.column = table_2.column ;	
+	
+	select tbl_cm.id,cm, name,capital from tbl_cm RIGHT JOIN tbl_state on tbl_cm.id = tbl_state.id ;
+	select tbl_state.id,name,capital,cm from tbl_state right join tbl_cm on tbl_state.id = tbl_cm.id where capital = 'Gandhinagar';
+	select tbl_cm.id,cm,name,capital from tbl_cm right join tbl_state on tbl_cm.id = tbl_state.id where name = 'Karnatak' ;
+	select tbl_cm.id,cm,name,capital from tbl_cm right join tbl_state on tbl_cm.id = tbl_state.id where cm is null;
+	
+4> MySQL Cross Join
+	
+	Syntax: SELECT column-lists FROM table_1 CROSS JOIN table_2 ;
+	
+	select * from tbl_state cross join tbl_cm;
+	select tbl_state.id,tbl_state.name, tbl_state.capital, tbl_cm.cm from tbl_state cross join tbl_cm on tbl_state.id = tbl_cm.id where tbl_state.id > 1 AND tbl_state.id < 4 ; 
+	
+	select tbl_cm.id,tbl_cm.cm,tbl_state.name,tbl_state.capital from tbl_cm cross join tbl_state on tbl_cm.id = tbl_state.id where tbl_cm.id > 0 AND tbl_cm.id <=5 ;
+	
+5> MySQL Self Join
+
+	Syntax: SELECT a.column_name, b.column_name...
+			FROM table1 a, table1 b
+			WHERE condition;
+			
+	
+	select a.id,b.name, a.salary from tbl_empl a, tbl_empl b where a.id = b.id;
+	
+	select s1.id,s1.name,s1.city,s2.salary from tbl_empl s1 INNER JOIN tbl_empl s2 on s1.id = s2.id  WHERE s1.city = 'bhavnagar';
+	
+6> MySQL Delete Join
+
+	Syntax: DELETE table_name FROM table_1 INNER JOIN table_2 ON table_1.joining_column = table_2.joining_column WHERE condition ;
+	
+	delete tbl_empl, emp_des FROM tbl_empl inner join emp_des on tbl_empl.id = emp_des.id where tbl_empl.id = 1 ;
+	
+7> MySQL Update Join
+
+	Syntax: UPDATE table_1,table_2, [INNER JOIN | LEFT JOIN] table_1 ON table_1.C1 = table_2.C1
+			SET table_1.C2 = table_2.C2, table_2.C3 = expression
+			WHERE Condition;
+			
+	UPDATE employees INNER JOIN merits ON employees.performance = merits.performance SET salary = salary + salary * percentage;
+
+8> MySQL EquiJoin
+
+	Syntax: SELECT column_name(s) FROM table_1, table_2,...,table_N WHERE table_1.column_name = table_2.column_name;		
+				OR		
+			SELECT (column_list | *) FROM table_1 JOIN table_2 ON table_1.column_name = table_2.column_name
+			
+	select name,designation,salary from tbl_empl, emp_des where tbl_empl.id = emp_des.id;
+	
+	select emp.name, des.designation, salary from tbl_empl as emp JOIN emp_des as des where emp.id = des.id;
+	
+9> MySQL Natural Join
+
+	Syntax: SELECT [column_names | *] FROM table_1 NATURAL JOIN table_2;
+	
+	select emp.name,des.designation from tbl_empl as emp NATURAL JOIN emp_des as des;
+	
+	select tbl_empl.name,salary, emp_des.designation from tbl_empl INNER JOIN emp_des ON tbl_empl.id = emp_des.id;
+	
+	select emp.name,des.designation,salary from tbl_empl as emp NATURAL JOIN emp_des as des where salary > 100000;
+	
+			
+	

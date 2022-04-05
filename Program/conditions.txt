@@ -68,3 +68,39 @@
 	select name,capital from tbl_state where NOT EXISTS (select * from tbl_cm where tbl_state.id = tbl_cm.id);
 	
 	
+9> MySQL NOT condition
+
+	Syntax: NOT condition
+	SELECT * FROM student WHERE name NOT IN ('ayush','rahsya','ashnir');
+	SELECT * FROM student WHERE name IS NOT NULL;
+	SELECT * FROM student WHERE name NOT LIKE 'a%';
+	SELECT * FROM student WHERE id NOT BETWEEN 4 AND 6;
+	
+10> MySQL Not Equal
+
+	SELECT * FROM tbl_empl WHERE city <> 'surat' ; 
+				OR
+	SELECT * FROM tbl_empl WHERE city != 'surat' ;
+	
+	SELECT * FROM tbl_empl WHERE salary > 100000 and city <> 'surat';
+
+11> MySQL IS NULL condition
+
+	Syntax: expression IS NULL;
+	
+	SELECT * FROM tbl_empl WHERE name IS NULL;
+	
+12> MySQL IS NOT NULL condition
+
+	Syntax: expression IS NOT NULL;
+	
+	SELECT * FROM tbl_empl WHERE name IS NOT NULL ;
+
+13> MySQL BETWEEN condition
+
+	Syntax: expression BETWEEN value 1 AND value 2 ;
+	
+	SELECT * FROM tbl_empl WHERE id BETWEEN 5 AND 7;
+	
+	SELECT * FROM emp WHERE working_date BETWEEN CAST('2022-03-01' AS DATE) AND CAST ('2022-03-02' AS DATE) ;
+	
