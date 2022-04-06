@@ -1,0 +1,97 @@
+
+-> 	create table employee (name varchar(45) not null, occupation varchar(45) not null, working_date date, working_hours varchar(10));
+
+	insert into employee(name,occupation,working_date,working_hours) values 
+	('Robin', 'Scientist', '2020-10-04', 12), ('Warner', 'Engineer', '2020-10-04', 10),  
+	('Bolt', 'Actor', '2020-10-04', 13), ('Faf', 'Doctor', '2020-10-04', 14),  
+	('Archer', 'Teacher', '2020-10-04', 12),('Bravo', 'Business', '2020-10-04', 11);
+
+==> MySQL Trigger
+
+1> Create Trigger
+
+->	Syntax: CREATE TRIGGER trigger_name
+				(AFTER|BEORE) (INSERT|UPDATE|DELETE)
+				ON table_name FOR EACH ROW
+				BEGIN
+					--variable declarations
+					--trigger code
+				END ;
+				
+-> 	This trigger is invoked automatically insert the working_hours = 0 if someone tries to insert working_hours < 0.
+
+DELIMITER //
+	CREATE TRIGGER before_insert_empworkinghours
+		BEFORE INSERT 
+			ON employee  FOR EACH ROW
+		BEGIN
+			IF NEW.working_hours < 0 THEN
+				SET NEW.working_hours = 0;
+			END IF;
+		END //
+DELIMITER ;
+		
+-> 	INSERT INTO employee(name,occupation,working_date,working_hours) values
+	('Maxwell', 'Cricketer', '2020-10-04', 10);
+->	insert into employee(name,occupation,working_date,working_hours) values('Max', 'Contractor', '2020-10-04', -10);
+
+
+2>	 Drop Trigger
+
+->	Syntax: DROP TRIGGER database_name.trigger_name;
+	
+	DROP TRIGGER trigger_demo.before_insert_empworkinghours;
+	
+3>	Before Insert Trigger
+
+		Syntax: CREATE TRIGGER trigger_name
+				BEFORE INSERT
+				ON table_name FOR EACH ROW
+				BEGIN
+						variable_declarations..
+						Trigger_body;
+				END ;
+	
+->	This trigger is invoked automatically that inserts the occupation = 'Doctor' if someone tries to insert the occupation = 'Scientist'.
+
+DELIMITER //
+	Create Trigger before_insert 
+		BEFORE INSERT 
+		ON employee FOR EACH ROW
+			BEGIN
+				IF NEW.occupation = 'Scientist' THEN
+					SET NEW.occupation = 'Doctor';
+				END IF;
+			END //
+DELIMITER ;
+	
+-> INSERT INTO employee (name,occupation,working_date,working_hours) values
+	('Markus', 'Scientist', '2020-10-08', 14);
+	
+->	INSERT INTO employee (name,occupation,working_date,working_hours) values
+	('Alexa', 'Actor', '2020-10-08', 12);
+	
+
+4>	After Insert Trigger	
+
+		Syntax: Create Trigger trigger_name
+				After Insert 
+				ON table_name FOR EACH ROW 
+				BEGIN
+					variable_declarations
+					Trigger_body
+				END;
+				
+-> create table employee_info(name varchar(45) NOT NULL, occupation varchar(45) not null, wroking_date date default null, working_hours varchar(10) default null,last_inserted time );
+	
+DELIMITER //
+	Create Trigger after_insert
+	After Insert 
+	ON  employee  FOR EACH ROW
+		BEGIN
+			insert into employee_info values(new.name,new.occupation,new.working_date,new.working_hours, CURTIME() );
+		END //
+DELIMITER ;
+
+-> 	INSERT INTO employee (name,occupation,working_date,working_hours) values ('Amit', 'Actor', '2020-10-09', 15);
+->	select * from employee_info;
