@@ -1,0 +1,85 @@
+
+==>	Aggregate Function
+
+
+1>	Count() Function
+
+	1>	COUNT(*) Function
+	2>	COUNT(expression) Function
+	3>	COUNT(distinct expression) Function
+	
+	Syntax:	SELECT COUNT(aggregate_expression) FROM table_name [WHERE conditions] ;
+	
+->	SELECT COUNT(name) FROM tbl_empl;
+->	SELECT COUNT(*)FROM tbl_empl WHERE salary < 70000;
+->	SELECT COUNT(distinct city)FROM tbl_empl;
+
+=>	Count() Function with GROUP BY Clause
+
+->	SELECT name, city, COUNT(*)FROM tbl_empl group by city;
+
+=>	Count() Function with HAVING and ORDER BY Clause
+
+->	SELECT name,city,COUNT(*) FROM tbl_empl GROUP BY city HAVING COUNT(*)>=1 ORDER BY COUNT(*);
+
+
+2>	SUM() Function
+
+	Syntax:	SELECT SUM(aggregate_expression) FROM table_name [WHERE conditions] ;
+
+->	SELECT SUM(working_hour)as Total_working_hours FROM emp ;
+->	SELECT SUM(working_hour)as 'Total working hours' FROM emp WHERE  working_hour<8;
+->	SELECT id,name, SUM(working_hour) as 'Total_working_hours' FROM emp GROUP BY name;
+->	SELECT id,name, SUM(working_hour)as 'Total_working_hours' FROM emp GROUP BY name HAVING SUM(working_hour)>24;
+->	SELECT id,name, SUM(DISTINCT working_hour)as 'Total_working_hours'FROM emp GROUP BY name;
+
+3>	AVG() Function
+
+	Syntax: SELECT AVG(aggregate_expression) FROM table_name [WHERE conditions];
+
+->	SELECT AVG(working_hour)Average_Working_Hours FROM emp ;
+->	SELECT AVG(working_hour)Average_Working_Hours FROM emp WHERE working_hour>8;
+->	SELECT id,name, AVG(working_hour)Average_Working_Hours FROM emp GROUP BY name HAVING AVG(working_hour)>5;
+->	SELECT id,name, AVG(DISTINCT working_hour)Average_Working_Hours FROM emp GROUP BY name;
+
+4>	MIN() Function
+
+	Syntax: SELECT MIN(DISTINCT aggregate_expression) FROM table_name [WHERE conditions];
+	
+->	SELECT MIN(salary)Minimum_income FROM tbl_empl;
+->	SELECT MIN(salary)Minimum_income FROM tbl_empl WHERE city = 'Surat';
+->	SELECT name,city, MIN(salary)Minimum_salary FROM tbl_empl GROUP BY city;
+->	SELECT city, MIN(salary)Minimum_income FROM tbl_empl GROUP BY city HAVING MIN(salary)>60000;
+->	SELECT name,city, MIN(DISTINCT salary)Minimum_income FROM tbl_empl GROUP BY city ;
+
+5>	MAX() Function
+	
+	Syntax: SELECT MAX(DISTINCT aggregate_expression) FROM table_name [WHERE conditions];
+
+->	SELECT MAX(salary)Maximum_income FROM tbl_empl;
+->	SELECT MAX(salary)Maximum_income FROM tbl_empl WHERE city = 'Surat';	
+->	SELECT name,city, MAX(salary)Maximum_salary FROM tbl_empl GROUP BY city;
+->	SELECT city, MAX(salary)Maximum_income FROM tbl_empl GROUP BY city HAVING MIN(salary)>60000;
+->	SELECT name,city, MAX(DISTINCT salary)Maximum_income FROM tbl_empl GROUP BY city ;
+
+6>	GROUP_CONCAT() Function
+
+	Syntax: SELECT column_1, column_2,...column_N GROUP_CONCAT( [DISTINCT] column_name_1 [ORDER BY] [SEPERATOR] ) FROM table_name GROUP BY column_name_2;
+	
+->	SELECT id,city, GROUP_CONCAT(name) as Name FROM tbl_empl group by city;
+->	SELECT id,city, GROUP_CONCAT(DISTINCT name) as Name FROM tbl_empl group by city;
+->	SELECT GROUP_CONCAT(CONCAT_WS(':', name,salary)SEPARATOR ';')as Employee_Name_and_Salary From tbl_empl;
+
+7>	First Function
+
+	Syntax:	SELECT column_name FROM table_name LIMIT 1;
+	
+->	SELECT name FROM tbl_empl LIMIT 1;
+->	SELECT id,name,city,salary FROM tbl_empl LIMIT 2;
+
+8>	Last Function
+
+	Syntax: SELECT column_name FROM table_name ORDER BY column_name DESC LIMIT 1;
+	
+->	SELECT id,name,city,salary FROM tbl_empl ORDER BY name DESC LIMIT 1;
+->	SELECT id,name,city,salary FROM tbl_empl ORDER BY name DESC LIMIT 2;
