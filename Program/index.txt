@@ -1,0 +1,56 @@
+=>	MySQL INDEX
+
+->	CREATE TABLE student (stud_id int not null auto_increment primary key, name varchar(50) not null, class varchar(25), age int );
+->	insert into student (name,class,age) values ('virat','CE',21),('martin','BE',22),('luthar','EE',23),('jack','IT',22),('dorcy','B.Tech',21);
+
+1>	Create Index
+		
+		Syntax: CREATE TABLE table_name(col1 int primary key, col2 int not null, col3 int not null, col4 varchar(20), index (col2,col3) );		
+					OR
+				CREATE INDEX index_name ON table_name (column_names);
+				
+->	CREATE INDEX class ON student(class);
+->	SHOW INDEXES FROM student;	
+			
+
+2>	Drop INDEX
+
+		Syntax:	DROP index index_name ON table_name;
+		
+->	DROP INDEX age ON student;
+
+
+3>	Show INDEX
+
+		Syntax:	SHOW INDEXES FROM table_name ;
+					OR
+				SHOW INDEXES FROM table_name IN database_name;
+					OR
+				SHOW INDEXES FROM database_name.table_name ;
+				
+		=>	Filter Index Information
+			
+			Syntax:	SHOW INDEXES FROM table_name WHERE conditions;
+			
+->	SHOW INDEXES FROM student WHERE visible = 'NO';
+
+
+
+=>	CREATE TABLE emp_details (id int auto_increment primary key, name varchar(45), email varchar(45), phone varchar(15), city varchar(25), UNIQUE KEY unique_email(email));
+=>	INSERT into emp_details(name,email,phone,city) values ('peter','peteruk@gmail.com','7080904050','texas'),
+														  ('mark','markusa@gmail.com','8090100025','huston'),
+														  ('jeck','jeckus@gmail.com','9876543210','california'),
+														  ('avadh','avadhind@gmail.com','9632587410','delhi'),
+														  ('adi','adiind@gmail.com','8975236410','lucknow');
+4>	Unique INDEX
+
+		Syntax:	CREATE UNIQUE INDEX index_name ON table_name (index_column_1,index_column_2,...);
+
+->	Create UNIQUE INDEX ui_name_phone ON emp_details (name,phone);
+
+
+
+
+
+
+				
