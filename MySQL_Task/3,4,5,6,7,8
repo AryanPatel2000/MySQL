@@ -1,0 +1,47 @@
+3 => Write a query to display of all student
+
+->	select * from tbl_student;
+
+
+4 => Write a query for retrive of all student and sort in first name or any fields
+
+->	SELECT * FROM tbl_student ORDER BY first_name ASC;
+
+
+5 => Write a query for count of total student
+
+->	SELECT COUNT(first_name)as Total_Student FROM tbl_student;
+
+
+6 => Write a query to display the student's all details and department names of all student_data.
+
+->	SELECT tbl_student.stud_id,tbl_student.first_name,tbl_student.middle_name,tbl_student.last_name,tbl_student.mobile_no,tbl_student.dept_id,
+	tbl_department.dept_name from tbl_student inner join tbl_department on tbl_student.dept_id = tbl_department.dept_id;
+	
+
+7 => Write a query for find student which belongs to same city
+
+->	SELECT stud_id,first_name,city from tbl_student WHERE city IN (SELECT city from tbl_student GROUP BY city HAVING COUNT(*)>1); 	
+
+->	SELECT city,GROUP_CONCAT( first_name) as Name FROM tbl_student GROUP BY city HAVING COUNT(*)>1;
+
+
+8 => Write a query for count of student with same department 
+
+
+->	SELECT d.dept_name,COUNT(s.stud_id)as count
+	FROM tbl_department d
+	LEFT JOIN tbl_student s ON d.dept_id = s.dept_id
+	GROUP BY d.dept_id ;
+	
+
+->	SELECT d.dept_name, GROUP_CONCAT(s.first_name)as Name 
+	FROM tbl_department d 
+	LEFT JOIN tbl_student s ON d.dept_id = s.dept_id 
+	GROUP BY d.dept_id ;
+	
+	
+	
+	
+	
+	

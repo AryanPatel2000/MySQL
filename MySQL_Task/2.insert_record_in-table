@@ -1,0 +1,39 @@
+=>	Write a query to insert data 
+ 
+ 
+->	insert into tbl_student(first_name,middle_name,last_name,mobile_no,email,doj,dob,city,dept_id) values
+ 
+                            ('Jeck','Denial','Dorcy','9874563210','jeck@gmail.com','2022-04-25','1999-05-09','California',1),
+                             ('Yogi','Aditya','Nath','9632587410','yogi@gmail.com','2022-08-20','1990-12-21','Gorakhpur',2),
+                              ('Nick','Peter','Zones','7412589631','nick@gmail.com','2022-01-02','1998-07-05','California',1),
+                               ('Parag','Mukund','Agrawal','8523647910','parag@gmail.com','2021-03-15','1992-03-14','New Jersy',2),
+                                ('Amitabh','Harivanshray','Bachchan','9874562130','bachchan@gmail.com','2020-12-25','1978-11-19','Mumbai',3),
+                                 ('Rahul','Kumar','Tewatiya','7539518246','rahul@gmail.com','2014-02-17','1975-07-11','Baroda',2),
+                                  ('Akshay','Kumar','Bhatiya','7412365894','bhatiya@gmail.com','2015-08-20','1989-06-04','Mumbai',3),
+                                  ('Kapil','Kumar','Sharma','863259147','tkss@gmail.com','2019-09-24','1988-08-01','Amritsar',3),
+                                  ('Sundar','Kumar','Pichai','8624795213','sundar@gmail.com','2012-10-22','1975-03-14','Khadagpur',1),
+                                  ('Ashish','Kumar','Bhatiya','7012345679','ashish@gmail.com','2019-04-18','1985-10-01','Surat',4),
+                                  ('Mahendra','Singh','Dhoni','9518246730','msd@gmail.com','2013-09-28','1974-10-08','Ranchi',5),
+                                  ('Nikita','Singh','Bose','7986325410','nikita@gmail.com','2017-12-24','1973-11-01','California',4),
+                                  ('Tipendra','Jethalal','Gada','8293714569','tjg@gmail.com','2008-05-30','1999-9-22','Mumbai',5);
+								  
+
+->	insert into tbl_department(dept_id,dept_name) values (1,'IT'),(2,'CE'),(3,'EE'),(4,'ME'),(5,'Management');
+
+->	insert into tbl_subject(id,sub_name,sub_total_mark) values (1,'Science',100),(2,'Account',100),(3,'Project',100);
+
+->	insert into tbl_marksheet(student_id,sub_id,sub_marks) values 
+	(1,1,85),(1,2,80),(1,3,75),
+	(2,1,80),(2,2,89),(2,3,70),
+	(3,1,60),(3,2,65),(3,3,69),
+	(4,1,62),(4,2,55),(4,3,60),
+	(5,1,90),(5,2,88),(5,3,80),
+	(6,1,65),(6,2,52),(6,3,50),
+	(7,1,80),(7,2,84),(7,3,85),
+	(8,1,50),(8,2,45),(8,3,46),
+	(9,1,34),(9,2,40),(9,3,35),
+	(10,1,55),(10,2,25),(10,3,30),
+	(11,1,81),(11,2,65),(11,3,50),
+	(12,1,70),(12,2,72),(12,3,80),
+	(13,1,98),(13,2,94),(13,3,95);
+	

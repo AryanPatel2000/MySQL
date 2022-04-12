@@ -1,0 +1,21 @@
+
+9 => Write a query for retrive data like
+
+		id  student_full_name       DOB      Age   
+		1   fname mname lname   01-01-2000   22    
+	
+->	SELECT stud_id as Id,
+	CONCAT(first_name,' ', middle_name,' ' , last_name) as student_full_name,
+	dob as DOB,
+	TIMESTAMPDIFF(YEAR,dob,CURDATE()) as Age 
+	FROM tbl_student
+	WHERE stud_id IN (SELECT stud_id FROM tbl_student); 
+	
+	
+10 => Write a query for display student list which age is greater than 25 
+
+->	SELECT stud_id , CONCAT(first_name,' ',last_name)as Name,dob,TIMESTAMPDIFF(YEAR,dob,CURDATE())as Age
+	from tbl_student WHERE TIMESTAMPDIFF(YEAR,dob,CURDATE()) > 25 ;
+	
+	
+	

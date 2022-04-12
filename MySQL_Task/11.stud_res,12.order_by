@@ -1,0 +1,34 @@
+
+11 => Write a query like..
+
+	id   student_full_name         total_marks       percentage      result
+	1    fname mname lname      	 150               55%          pass/fail  
+
+		
+->	SELECT s.stud_id as Id,CONCAT(first_name,' ',middle_name,' ',last_name)as Student_Name ,SUM(sub_marks)as Total_marks,
+	Concat(ROUND(SUM(sub_marks)/3),' ','%')as Percentage,
+	IF(CONCAT(ROUND(SUM(sub_marks)/3))>40,'PASS','FAIL')as Result
+	FROM tbl_student s
+	INNER JOIN tbl_marksheet m ON s.stud_id = m.student_id
+	GROUP BY s.stud_id;
+	
+
+12 => Write a query for retrieve above list order by percentage
+
+->	SELECT s.stud_id as Id,CONCAT(first_name,' ',middle_name,' ',last_name)as Student_Name ,SUM(sub_marks)as Total_marks,
+	Concat(ROUND(SUM(sub_marks)/3),' ','%')as Percentage,
+	IF(CONCAT(ROUND(SUM(sub_marks)/3))>40,'PASS','FAIL')as Result
+	FROM tbl_student s
+	INNER JOIN tbl_marksheet m ON s.stud_id = m.student_id
+	GROUP BY s.stud_id
+	ORDER BY Percentage ASC;
+	
+->	SELECT s.stud_id as Id,Concat(first_name,' ',middle_name,' ',last_name)as student_Name, SUM(sub_marks)as Total_marks,
+	Concat(ROUND(SUM(sub_marks)/3),' ','%')as Percentage,
+	IF(CONCAT(ROUND(SUM(sub_marks)/3))>40,'PASS','FAIL')as Result
+	FROM tbl_student s
+	INNER JOIN tbl_marksheet m ON s.stud_id = m.student_id
+	GROUP BY s.stud_id
+	ORDER BY Percentage DESC ;
+	
+	
