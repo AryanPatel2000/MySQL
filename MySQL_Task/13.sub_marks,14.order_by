@@ -1,0 +1,50 @@
+
+13 => Write a query for all student list with their all subject mark
+
+   id   student_full_name   sub1  sub2   sub3   total_marks   percentage   result
+   1    fname mname lname    10    20    60        90            55%      pass/fail 
+   
+
+		 
+->	SELECT s.stud_id as Id, CONCAT(first_name,' ',middle_name, ' ',last_name)as Student_Name, 
+	MAX(CASE WHEN(sub_name = 'Science') THEN sub_marks else NULL end )as 'Science', 
+	MAX(CASE WHEN(sub_name = 'Account') THEN sub_marks else NULL end )as 'Account',
+	MAX(CASE when(sub_name = 'Project') THEN sub_marks else NULL end )as 'Project',
+	SUM(sub_marks)as 'Total_marks',
+	CONCAT(ROUND(SUM(sub_marks)/3 ),' ' ,'%')as 'Percentage',
+	IF(CONCAT(ROUND(SUM(sub_marks)/3)) > 40, 'PASS','FAIL' )as 'Result'
+	FROM tbl_student s
+	LEFT JOIN tbl_marksheet m ON s.stud_id = m.student_id
+	LEFT JOIN tbl_subject s1 ON m.sub_id = s1.id
+	GROUP BY stud_id ;
+		 
+		 
+		 
+14 => Write a query to display list in ascending and descending order by total marks		 
+
+->	select s.stud_id as Id, CONCAT(first_name,' ',middle_name,' ',last_name)as Student_Name,
+	max(case when(sub_name = 'Science') THEN sub_marks else NULL end)as 'Science',
+	max(case when(sub_name = 'Account') THEN sub_marks else NULL end)as 'Account',
+	max(case when(sub_name = 'Project') THEN sub_marks else NULL end)as 'Project',
+	sum(sub_marks)as 'Total_marks',
+	CONCAT(round(sum(sub_marks)/3),' ' ,'%')as 'Percentage',
+	IF(CONCAT(round(sum(sub_marks)/3)) > 40 ,'PASS','FAIL')as 'Result'
+	FROM tbl_student s 
+	LEFT JOIN tbl_marksheet m ON s.stud_id = m.student_id
+	LEFT JOIN tbl_subject s1 ON m.sub_id = s1.id
+	GROUP BY stud_id 
+	ORDER BY Total_marks ASC;
+	
+->	select s.stud_id as Id, CONCAT(first_name,' ',middle_name,' ',last_name)as Student_Name,
+	max(case when(sub_name = 'Science') THEN sub_marks else NULL end)as 'Science',
+	max(case when(sub_name = 'Account') THEN sub_marks else NULL end)as 'Account',
+	max(case when(sub_name = 'Project') THEN sub_marks else NULL end)as 'Project',
+	sum(sub_marks)as 'Total_marks',
+	CONCAT(round(sum(sub_marks)/3),' ' ,'%')as 'Percentage',
+	IF(CONCAT(round(sum(sub_marks)/3)) > 40 ,'PASS','FAIL')as 'Result'
+	FROM tbl_student s 
+	LEFT JOIN tbl_marksheet m ON s.stud_id = m.student_id
+	LEFT JOIN tbl_subject s1 ON m.sub_id = s1.id
+	GROUP BY stud_id 
+	ORDER BY Total_marks DESC ;
+	

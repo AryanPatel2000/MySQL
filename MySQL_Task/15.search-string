@@ -1,0 +1,20 @@
+
+15 => Write a query for search given string or word to all fields like...
+
+->	find word " test"
+
+id   firstname    middlename   lastname    mobileno    
+1     testing       bbb          ccc       1234567  
+2      aaa         test          ddd       12234234
+3      test        gdsg         test       12313123
+
+
+->	ALTER TABLE tbl_student ADD FULLTEXT(first_name,middle_name,last_name);
+
+
+->	SELECT stud_id, first_name, middle_name, last_name, mobile_no FROM tbl_student WHERE MATCH(first_name, middle_name, last_name) AGAINST ('Gada');
+
+
+->	ALTER TABLE tbl_student DROP INDEX first_name;	
+
+
