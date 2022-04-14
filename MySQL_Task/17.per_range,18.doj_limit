@@ -1,0 +1,23 @@
+
+17 => Write a query for those student which list percentage between given range
+
+
+->	SELECT s.stud_id, CONCAT(first_name,' ',last_name)as Name,
+	CONCAT(ROUND(SUM(sub_marks) /3),' ','%')as Percentage
+	FROM tbl_student s
+	INNER JOIN tbl_marksheet m ON s.stud_id = m.student_id 
+	INNER JOIN tbl_subject s1 ON m.sub_id = s1.id
+	GROUP BY stud_id
+	HAVING Percentage BETWEEN 80 AND 100;
+	
+
+18 => Write a query for display first 5 student list which join date in given range
+
+
+->	SELECT stud_id,first_name,last_name,doj,city from tbl_student where doj between '2018-01-01' AND '2019-12-25' LIMIT 5 ;
+
+
+->	select s.stud_id,concat(first_name,' ',last_name) as Name,doj,
+	d.dept_id, d.dept_name from tbl_student s
+	inner join tbl_department d ON s.dept_id = d.dept_id group by stud_id having doj between '2018-01-01' and '2019-12-25' limit 5;
+	

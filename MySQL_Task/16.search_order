@@ -7,20 +7,3 @@
 	WHERE MATCH(first_name,middle_name,last_name) AGAINST('g*' IN BOOLEAN MODE)	;
 	
 	
-
-
-
-
-
-
-
-select Id,first_name,middle_name, last_name, MATCH(first_name, middle_name, last_name) AGAINST('bhim')as Relevance_score    FROM tbl_emp
-WHERE MATCH(first_name,middle_name,last_name) AGAINST('bhim');
-
-select stud_id,first_name,middle_name,last_name, MATCH(first_name,middle_name,last_name) AGAINST ('gada')as Relevance_score FROM tbl_student WHERE MATCH(first_name,middle_name,last_name) AGAINST('gada');
-
-select stud_id,first_name,middle_name,last_name, MATCH(first_name,middle_name,last_name) AGAINST ('g*' IN BOOLEAN MODE)as Relevance_score FROM tbl_student 
-WHERE MATCH(first_name,middle_name,last_name) AGAINST('g*' IN BOOLEAN MODE);
-
-select stud_id,first_name,middle_name,last_name, MATCH(first_name,middle_name,last_name) AGAINST ('a*' IN BOOLEAN MODE)as Relevance_score FROM tbl_student 
-WHERE MATCH(first_name,middle_name,last_name) AGAINST('A*' IN BOOLEAN MODE);

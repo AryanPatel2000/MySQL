@@ -1,0 +1,19 @@
+
+19 => Write a query for find out student details which have max percentage
+
+->	select s.stud_id, concat(first_name,' ',middle_name,' ',last_name)as Student_Name,d.dept_name,
+	max(case when(sub_name = 'Science') THEN sub_marks else NULL end)as 'Science',
+	max(case when(sub_name = 'Account') THEN sub_marks else NULL end)as 'Account',
+	max(case when(sub_name = 'Project') THEN sub_marks else NULL end)as 'Project',
+	sum(sub_marks)as 'Total_marks',
+	concat(round(sum(sub_marks)/3),' ','%')as 'Percentage',
+	if(concat(round(sum(sub_marks)/3 ))>40 , 'PASS','FAIL')as 'Result'
+	from tbl_student s
+	INNER JOIN tbl_department d ON s.dept_id = d.dept_id
+	INNER JOIN tbl_marksheet m on s.stud_id = m.student_id
+	INNER JOIN tbl_subject s1 ON m.sub_id = s1.id
+	group by s.stud_id
+	order by Percentage desc limit 1 ;
+	
+	
+	
