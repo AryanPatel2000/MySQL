@@ -1,0 +1,63 @@
+
+20 => write a query for below output
+
+
+	student_id   total_student   result
+	 1,2,5           3            pass
+	  3,4            2            fail
+	  
+	 
+->	SELECT GROUP_CONCAT(Id)as Student_id,
+	COUNT(Total_id)as Total_Students,
+	IF(Result ,'PASS','FAIL')as Results
+	FROM
+	(
+		SELECT s.stud_id as Id,
+		COUNT(stud_id)as Total_id,
+		CONCAT(ROUND(SUM(sub_marks)/3))as Percentage,
+		IF(CONCAT(ROUND(SUM(sub_marks)/3))>40,'PASS','FAIL')as Result
+		FROM tbl_student s
+		INNER JOIN tbl_marksheet m ON s.stud_id = m.student_id
+		INNER JOIN tbl_subject s1 ON m.sub_id = s1.id
+		group by stud_id
+		HAVING Result = 'FAIL'
+	)as student  ;
+
+
+
+	SELECT GROUP_CONCAT(Id )as Student_id,
+	COUNT(Total_id)as Total_Students,
+	IF(Result = 'PASS' , 'PASS','FAIL')as Results  
+	FROM
+	(
+		SELECT s.stud_id as Id,
+		COUNT(Id)as Total_id,
+		CONCAT(ROUND(SUM(sub_marks)/3))as Percentage,
+		IF(CONCAT(ROUND(SUM(sub_marks)/3))>40,'PASS','FAIL')as Result
+		FROM tbl_student s
+		INNER JOIN tbl_marksheet m ON s.stud_id = m.student_id
+		GROUP BY s.stud_id
+		HAVING Percentage > 40
+	)as student ;
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
